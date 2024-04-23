@@ -1,0 +1,141 @@
+🚼, [23.04.2024 21:17]
+public class ListPerformanceTest {
+    public static void main(String[] args) {
+        int elementsCount = 1000000;
+        
+        // Создание ArrayList
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        long startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            arrayList.add(i);
+        }
+        long addArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            arrayList.add(0, i);
+        }
+        long addFirstArrayListTime = System.nanoTime() - startTime;
+
+        // Добавление в середину списка будет происходить быстрее,
+        // если добавление элементов происходит в конец списка,
+        // поэтому определим этот момент после добавления всех элементов.
+        startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            arrayList.add(i / 2, i);
+        }
+        long addMiddleArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        arrayList.remove(arrayList.size() - 1);
+        long removeLastArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        arrayList.remove(0);
+        long removeFirstArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        arrayList.remove(arrayList.size() / 2);
+        long removeMiddleArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        arrayList.remove(Integer.valueOf(elementsCount - 1));
+        long removeValueArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        int getLastValueArrayList = arrayList.get(arrayList.size() - 1);
+        long getLastArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        int getFirstValueArrayList = arrayList.get(0);
+        long getFirstArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        int getMiddleValueArrayList = arrayList.get(arrayList.size() / 2);
+        long getMiddleArrayListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        arrayList.set(arrayList.size() - 1, -1);
+        long setValueArrayListTime = System.nanoTime() - startTime;
+
+        // Создание LinkedList
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            linkedList.add(i);
+        }
+        long addLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            linkedList.addFirst(i);
+        }
+        long addFirstLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < elementsCount; i++) {
+            linkedList.add(i / 2, i);
+        }
+        long addMiddleLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.removeLast();
+        long removeLastLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.removeFirst();
+        long removeFirstLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.remove(linkedList.size() / 2);
+        long removeMiddleLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.remove(Integer.valueOf(elementsCount - 1));
+        long removeValueLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        int getLastValueLinkedList = linkedList.getLast();
+        long getLastLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        int getFirstValueLinkedList = linkedList.getFirst();
+        long getFirstLinkedListTime = System.nanoTime() - startTime;
+
+🚼, [23.04.2024 21:17]
+startTime = System.nanoTime();
+        int getMiddleValueLinkedList = linkedList.get(linkedList.size() / 2);
+        long getMiddleLinkedListTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.set(linkedList.size() - 1, -1);
+        long setValueLinkedListTime = System.nanoTime() - startTime;
+
+        // Вывод результатов
+        System.out.println("ArrayList:");
+        System.out.println("Add time: " + addArrayListTime);
+        System.out.println("Add first time: " + addFirstArrayListTime);
+        System.out.println("Add middle time: " + addMiddleArrayListTime);
+        System.out.println("Remove last time: " + removeLastArrayListTime);
+        System.out.println("Remove first time: " + removeFirstArrayListTime);
+        System.out.println("Remove middle time: " + removeMiddleArrayListTime);
+        System.out.println("Remove by value time: " + removeValueArrayListTime);
+        System.out.println("Get last time: " + getLastArrayListTime);
+        System.out.println("Get first time: " + getFirstArrayListTime);
+        System.out.println("Get middle time: " + getMiddleArrayListTime);
+        System.out.println("Set time: " + setValueArrayListTime);
+
+        System.out.println("\nLinkedList:");
+        System.out.println("Add time: " + addLinkedListTime);
+        System.out.println("Add first time: " + addFirstLinkedListTime);
+        System.out.println("Add middle time: " + addMiddleLinkedListTime);
+        System.out.println("Remove last time: " + removeLastLinkedListTime);
+        System.out.println("Remove first time: " + removeFirstLinkedListTime);
+        System.out.println("Remove middle time: " + removeMiddleLinkedListTime);
+        System.out.println("Remove by value time: " + removeValueLinkedListTime);
+        System.out.println("Get last time: " + getLastLinkedListTime);
+        System.out.println("Get first time: " + getFirstLinkedListTime);
+        System.out.println("Get middle time: " + getMiddleLinkedListTime);
+        System.out.println("Set time: " + setValueLinkedListTime);
+    }
+}
